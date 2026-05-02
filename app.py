@@ -32,7 +32,6 @@ import streamlit as st
 # ---------------------------------------------------------------------------
 st.set_page_config(
     page_title="Spotify Studio Albums + Lyrics Explorer",
-    page_icon="🎵",
     layout="wide",
 )
 
@@ -654,7 +653,7 @@ def plot_comparison(comparison_df: pd.DataFrame):
 # ---------------------------------------------------------------------------
 
 def main():
-    st.title("🎵 Spotify Studio Albums + Lyrics Explorer")
+    st.title("Spotify Studio Albums + Lyrics Explorer")
     st.markdown(
         """
         App interactiva que combina datos de audio de Spotify con análisis de letras.
