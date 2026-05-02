@@ -665,7 +665,7 @@ def main():
 
     # Sidebar de controles
     with st.sidebar:
-        st.header("⚙️ Controles")
+        st.header("Controles")
         artist_name = st.selectbox("Artista", list(ARTIST_CONFIG.keys()), index=0)
         metric = st.selectbox(
             "Métrica léxica",
