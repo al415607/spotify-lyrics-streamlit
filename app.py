@@ -44,9 +44,7 @@ LYRICS_CACHE_FILE = "lyrics_cache_streamlit.json"
 # Cada artista lleva: Spotify artist_id + lista manual de álbumes de estudio.
 # La lista se mantiene manualmente porque el CSV no incluye un `album_type` fiable.
 ARTIST_CONFIG = {
-    # --- The Strokes (6 álbumes de estudio, 2001-2020) ---
-    # En el CSV usado para el trabajo suelen aparecer 5/6; normalmente falta
-    # "Comedown Machine", pero se deja en la lista para que la cobertura lo indique.
+
     "The Strokes": {
         "artist_id": "0epOFNiUfyON9EYx7Tpr6V",
         "studio_albums": [
@@ -58,9 +56,7 @@ ARTIST_CONFIG = {
             "The New Abnormal",
         ],
     },
-    # --- The National (5 álbumes de estudio seleccionados, 2007-2019) ---
-    # Se usa esta etapa central porque el dataset suele cubrirla bien y porque
-    # sus letras melancólicas suelen funcionar mejor con lyrics.ovh que The Clash.
+
     "The National": {
         "artist_id": "2cCUtGK9sDU2EoElnk0GNB",
         "lyrics_aliases": ["The National", "National"],
@@ -72,9 +68,7 @@ ARTIST_CONFIG = {
             "I Am Easy to Find",
         ],
     },
-    # --- Elliott Smith (6 álbumes de estudio oficiales, 1994-2004) ---
-    # Se mantiene sólo el criterio de álbumes de estudio. "New Moon" no se incluye
-    # porque es una recopilación póstuma de material inédito, no un álbum de estudio.
+
     "Elliott Smith": {
         "artist_id": "2ApaG60P4r0yhBoDCGD8YG",
         "studio_albums": [
@@ -211,7 +205,7 @@ def get_artist_subset(df_in: pd.DataFrame, artist_name: str) -> pd.DataFrame:
     # Conservar sólo álbumes de estudio
     artist_df = artist_df[artist_df["album_clean"].isin(studio_albums)].copy()
 
-    # Deduplicar: una fila por (artista, álbum, canción)
+    # Una fila por (artista, álbum, canción)
     artist_df = (
         artist_df
         .sort_values(["year", "album_clean", "disc_number", "track_number", "release_date"])
@@ -293,12 +287,12 @@ def build_title_candidates(title: str) -> list[str]:
     base = clean_title_for_api(title)
     variants = [base]
 
-    # Algunas canciones aparecen en la API sin subtítulos entre paréntesis.
+    # Algunas canciones aparecen en la API sin subtítulos entre paréntesis
     no_parentheses = re.sub(r"\s*\([^\)]*\)", "", base).strip()
     if no_parentheses and no_parentheses != base:
         variants.append(no_parentheses)
 
-    # Variante más agresiva: quitar comillas/apóstrofes/puntuación conflictiva.
+    # Quitar comillas/apóstrofes/puntuación conflictiva
     simplified = re.sub(r"[^a-zA-Z0-9\s]", "", no_parentheses or base)
     simplified = re.sub(r"\s+", " ", simplified).strip()
     if simplified and simplified not in variants:
@@ -796,7 +790,7 @@ def main():
     plot_comparison(comparison_df)
 
     # ------------------------------------------------------------------
-    # Tabla raw (opcional)
+    # Tabla raw
     # ------------------------------------------------------------------
     if show_raw and not selected_df.empty:
         st.subheader(f"Tabla completa filtrada — {artist_name}")
