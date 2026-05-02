@@ -11,18 +11,6 @@ La aplicación combina variables de audio del dataset de Spotify con letras obte
 - `tracks_features.csv`: dataset filtrado con las canciones usadas en la aplicación.
 - `lyrics_cache_streamlit.json`: caché local de letras para evitar llamadas repetidas a la API.
 
-## Nota sobre el dataset
-
-El dataset original de Spotify era demasiado grande para subirlo directamente al repositorio y para desplegarlo de forma cómoda en Streamlit Community Cloud.
-
-Por ese motivo, se ha generado una versión reducida de `tracks_features.csv` que conserva únicamente las canciones de los tres artistas analizados en la aplicación:
-
-- The Strokes
-- The National
-- Elliott Smith
-
-Esta reducción no afecta al funcionamiento de la app, ya que el análisis se centra exclusivamente en esos artistas. Además, permite que el repositorio sea más ligero y que la aplicación cargue más rápido.
-
 ## Ejecución local
 
 Instalar dependencias:
@@ -72,6 +60,18 @@ Se eligieron estos artistas porque tienen una cobertura razonable en el dataset 
 - Dataset de Spotify: `tracks_features.csv`.
 - Letras: API pública de `lyrics.ovh`.
 - Catálogo de álbumes de estudio: elaboración manual a partir de discografías oficiales y referencias públicas.
+
+## Nota sobre el dataset
+
+El dataset original de Spotify era demasiado grande para subirlo directamente al repositorio y para desplegarlo de forma cómoda en Streamlit Community Cloud.
+
+Por ese motivo, se ha generado una versión reducida de `tracks_features.csv` que conserva únicamente las canciones de los tres artistas analizados en la aplicación:
+
+- The Strokes
+- The National
+- Elliott Smith
+
+Esta reducción no afecta al funcionamiento de la app, ya que el análisis se centra exclusivamente en esos artistas. Además, permite que el repositorio sea más ligero y que la aplicación cargue más rápido.
 
 ## Limitaciones
 
